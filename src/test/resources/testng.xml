@@ -1,4 +1,4 @@
-<suite name="Integration-test" verbose="1">
+<suite name="Integration-test" verbose="1" parallel="methods" thread-count="2">
     <test name="UITests">
         <classes>
             <class name="Org.PlanSource.tests.PlanSourceUITests"/>
