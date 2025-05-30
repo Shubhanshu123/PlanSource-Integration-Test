@@ -14,8 +14,8 @@ import java.time.Duration;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-public class LoginPage {
-    private static final Logger logger = Logger.getLogger(LoginPage.class.getName());
+public class Login {
+    private static final Logger logger = Logger.getLogger(Login.class.getName());
     public static WebDriver login(WebDriver driver) throws IOException {
 
         Properties prop;
