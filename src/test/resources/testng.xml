@@ -1,0 +1,7 @@
+<suite name="Integration-test" verbose="1">
+    <test name="UITests">
+        <classes>
+            <class name="Org.PlanSource.tests.PlanSourceUITests"/>
+        </classes>
+    </test>
+</suite>
