@@ -11,7 +11,7 @@ This is a test repo for the Plansource interview skill demo.
 
 # Test Cases:
 
-- [ ] Create an Employee using UI Automation
+- [X] Create an Employee using UI Automation
 - [ ] Add a Dependent for the created Employee in the Enrollment window.
 - [ ] Enroll the Employee into two Benefits
 - [ ] Enroll in Dental Benefits using API.
