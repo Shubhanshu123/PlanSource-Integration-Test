@@ -40,7 +40,6 @@ public class ExtentTestListener implements ITestListener {
     @Override
     public void onTestSuccess(ITestResult result) {
         extentTestThread.get().log(Status.PASS, "Test Passed! ");
-
     }
 
     @Override
@@ -54,14 +53,11 @@ public class ExtentTestListener implements ITestListener {
         } catch (IOException e) {
             logger.severe(e.toString());
         }
-
-
-
     }
+
     @Override
     public void onTestSkipped(ITestResult result){
         extentTestThread.get().log(Status.SKIP,"Test Skipped"+ "\n "+result.getThrowable());
-
     }
 
     @Override

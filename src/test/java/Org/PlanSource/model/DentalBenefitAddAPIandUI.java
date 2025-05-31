@@ -20,11 +20,9 @@ public class DentalBenefitAddAPIandUI extends ExtentTestListener {
     private static final Logger logger = Logger.getLogger(DentalBenefitAddAPIandUI.class.getName());
     private final SoftAssert sa =new SoftAssert();
 
-
     public WebDriver dentalBenefit(WebDriver driver){
         final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
         try {
-
             Cookie driverCookie = driver.manage().getCookieNamed("_session_id");
             Assert.assertNotNull(driverCookie);
             extentTestThread.get().log(Status.PASS, "Session Cookie is not Empty. ID = "+ driverCookie.getValue());

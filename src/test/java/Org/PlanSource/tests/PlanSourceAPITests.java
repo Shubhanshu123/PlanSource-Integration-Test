@@ -14,6 +14,7 @@ public class PlanSourceAPITests extends BaseClass {
         DentalBenefitAddAPIandUI benefit = new DentalBenefitAddAPIandUI();
         benefit.dentalBenefit(driver);
     }
+
     @Test(priority = 5, dependsOnMethods = {"addDentalBenefit"})
     public void checkPdfConfirmation(){
         DentalBenefitAddAPIandUI benefit = new DentalBenefitAddAPIandUI();

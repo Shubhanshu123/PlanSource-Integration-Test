@@ -30,7 +30,6 @@ public class BaseClass {
     //quitting drive and flushing extent report
     @AfterTest
     public static void tearDown(){
-
         driver.quit();
     }
 }

@@ -68,7 +68,6 @@ public class AddNewEmployee extends ExtentTestListener {
             LocalDate dateOnTwoDaysAgo= LocalDate.now().minusDays(2);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
             String formattedDate = dateOnTwoDaysAgo.format(formatter);
-
             employee.setHireDate(driver.findElement(By.id("hire_date")));
             employee.getHireDate().sendKeys(formattedDate);
             employee.setEligibleStartDate(driver.findElement(By.id("benefits_start_date")));
@@ -83,7 +82,6 @@ public class AddNewEmployee extends ExtentTestListener {
             employee.getCurrent_salary().sendKeys("1200");
             employee.setBenefit_salary(driver.findElement(By.id("benefit_salary")));
             employee.getBenefit_salary().sendKeys("1000");
-
             driver.findElement(By.id("btn_save")).click();
             explicitWait.until(ExpectedConditions.titleIs("Employee Profile"));
             sa.assertEquals("Employee Profile", driver.getTitle());
@@ -98,7 +96,6 @@ public class AddNewEmployee extends ExtentTestListener {
         finally {
             Assert.assertNotNull(fis);
             fis.close();
-
         }
         return driver;
     }

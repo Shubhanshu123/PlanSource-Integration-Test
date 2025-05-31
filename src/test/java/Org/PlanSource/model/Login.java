@@ -22,7 +22,6 @@ public class Login extends ExtentTestListener {
     private static final SoftAssert sa =new SoftAssert();
 
     public static WebDriver login(WebDriver driver) throws IOException {
-
         Properties prop;
         FileInputStream fis=null;
         try {
@@ -36,10 +35,8 @@ public class Login extends ExtentTestListener {
             login.setUsername(driver.findElement(By.id("user_name")));
             explicitWait.until(ExpectedConditions.visibilityOf(login.getUsername()));
             login.getUsername().sendKeys(prop.getProperty("username"));
-
             login.setPassword(driver.findElement(By.id("password")));
             login.getPassword().sendKeys(prop.getProperty("password"));
-
             login.setSubmit(driver.findElement(By.id("logon_submit")));
             login.getSubmit().click();
 
@@ -53,7 +50,6 @@ public class Login extends ExtentTestListener {
         finally {
             Assert.assertNotNull(fis);
             fis.close();
-
         }
         return driver;
     }

@@ -26,6 +26,7 @@ public class PlanSourceUITests extends BaseClass {
             .withTimeout(Duration.ofSeconds(10))
             .pollingEvery(Duration.ofMillis(200))
             .ignoring(NoSuchElementException.class);
+
     //login page test
     @Test(priority = 1)
     public void loginToPlanSource() throws IOException {
@@ -46,9 +47,8 @@ public class PlanSourceUITests extends BaseClass {
         else {
             driver = AddNewEmployee.addDetails(driver);
         }
-
-
     }
+
     @Test(priority = 3)
     public void AddMedical_and_VoluntaryBenefits() throws IOException {
         Properties prop = new Properties();
@@ -67,6 +67,5 @@ public class PlanSourceUITests extends BaseClass {
         driver=AddFamilyBenefits.addFamilyDetails(driver);
         driver=AddFamilyBenefits.addBenefits(driver);
     }
-
 
 }
