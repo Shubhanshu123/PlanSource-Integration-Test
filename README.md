@@ -8,6 +8,7 @@ This is a test repo for the Plansource interview skill demo.
 4. run with testNG.
 5. Extent report is under test-report directory.
 * If you face any issue, just do a Maven clean install.
+* I have not deleted the branches so you can review the changes made through out.
 
 ## Test Cases:
 
