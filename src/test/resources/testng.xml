@@ -1,4 +1,8 @@
 <suite name="Integration-test" verbose="1" parallel="methods" thread-count="2">
+    <listeners>
+        <listener class-name="Org.PlanSource.Listeners.ExtentTestListener"/>
+    </listeners>
+
     <test name="UITests">
         <classes>
             <class name="Org.PlanSource.tests.PlanSourceUITests"/>
