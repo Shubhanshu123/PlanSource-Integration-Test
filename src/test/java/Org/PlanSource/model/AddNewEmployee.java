@@ -1,12 +1,15 @@
 package Org.PlanSource.model;
 
+import Org.PlanSource.Listeners.ExtentTestListener;
 import Org.PlanSource.PageObject.AddEmployeePage;
+import com.aventstack.extentreports.Status;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -17,8 +20,9 @@ import java.util.Properties;
 import java.util.Random;
 import java.util.logging.Logger;
 
-public class AddNewEmployee {
+public class AddNewEmployee extends ExtentTestListener {
     private static final Logger logger = Logger.getLogger(AddNewEmployee.class.getName());
+    private static final SoftAssert sa =new SoftAssert();
 
     public static WebDriver addDetails(WebDriver driver) throws IOException {
         WebDriverWait explicitWait =new WebDriverWait(driver, Duration.ofSeconds(5));
@@ -82,8 +86,8 @@ public class AddNewEmployee {
 
             driver.findElement(By.id("btn_save")).click();
             explicitWait.until(ExpectedConditions.titleIs("Employee Profile"));
-
-
+            sa.assertEquals("Employee Profile", driver.getTitle());
+            extentTestThread.get().log(Status.PASS, "Page Title 'Employee Profile' matched");
 
         }
         catch (Exception e){

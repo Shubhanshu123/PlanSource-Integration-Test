@@ -1,6 +1,8 @@
 package Org.PlanSource.model;
 
+import Org.PlanSource.Listeners.ExtentTestListener;
 import Org.PlanSource.PageObject.FamilyBenefitsPage;
+import com.aventstack.extentreports.Status;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -12,7 +14,9 @@ import java.time.Duration;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class AddFamilyBenefits {
+
+
+public class AddFamilyBenefits extends ExtentTestListener {
 
     private static final Logger logger = Logger.getLogger(AddFamilyBenefits.class.getName());
 
@@ -34,6 +38,7 @@ public class AddFamilyBenefits {
             wait.until(ExpectedConditions.elementToBeClickable(benefits.getNextButton())).click();
             wait.until(ExpectedConditions.titleIs("Dependents - Testing Plansource Client Benefits"));
             Assert.assertEquals(driver.getTitle(),"Dependents - Testing Plansource Client Benefits");
+            extentTestThread.get().log(Status.PASS, "Page Title 'Employee Profile' matched");
             benefits.setAddFamilyMember(driver.findElement(By.id("AddDependentDiv")));
             benefits.getAddFamilyMember().click();
             benefits.setFirstname(driver.findElement(By.id("first_name")));

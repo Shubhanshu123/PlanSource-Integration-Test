@@ -1,12 +1,15 @@
 package Org.PlanSource.model;
 
+import Org.PlanSource.Listeners.ExtentTestListener;
 import Org.PlanSource.PageObject.PlanSourceLoginPage;
+import com.aventstack.extentreports.Status;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -14,8 +17,10 @@ import java.time.Duration;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-public class Login {
+public class Login extends ExtentTestListener {
     private static final Logger logger = Logger.getLogger(Login.class.getName());
+    private static final SoftAssert sa =new SoftAssert();
+
     public static WebDriver login(WebDriver driver) throws IOException {
 
         Properties prop;
@@ -39,8 +44,8 @@ public class Login {
             login.getSubmit().click();
 
             explicitWait.until(ExpectedConditions.titleIs("Dashboard"));
-
-
+            sa.assertEquals("Dashboard",driver.getTitle());
+            extentTestThread.get().log(Status.PASS, "Page Title 'Employee Profile' matched");
 
         } catch (IOException | ElementNotInteractableException e) {
             logger.severe(e.toString());
