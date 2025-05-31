@@ -8,7 +8,8 @@ import org.testng.annotations.Test;
 @Listeners(Org.PlanSource.Listeners.ExtentTestListener.class)
 public class PlanSourceAPITests extends BaseClass {
 
-    @Test(priority = 4, dependsOnMethods = {"Org.PlanSource.tests.PlanSourceUITests.AddMedical_and_VoluntaryBenefits"})
+    @Test(priority = 4, description = "Issue: https://github.com/Shubhanshu123/PlanSource-Integration-Test/issues/6"
+            ,dependsOnMethods = {"Org.PlanSource.tests.PlanSourceUITests.AddMedical_and_VoluntaryBenefits"})
     public void addDentalBenefit(){
         DentalBenefitAddAPIandUI benefit = new DentalBenefitAddAPIandUI();
         benefit.dentalBenefit(driver);
