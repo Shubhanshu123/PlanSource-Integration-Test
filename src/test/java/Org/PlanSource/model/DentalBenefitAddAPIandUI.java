@@ -10,11 +10,10 @@ import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.logging.Logger;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
 
 public class DentalBenefitAddAPIandUI extends ExtentTestListener {
 
@@ -30,33 +29,34 @@ public class DentalBenefitAddAPIandUI extends ExtentTestListener {
             Assert.assertNotNull(driverCookie);
             extentTestThread.get().log(Status.PASS, "Session Cookie is not Empty. ID = "+ driverCookie.getValue());
             var URI = "https://partner-dev-benefits.plansource.com/v1/self_service/coverages";
-            var payload = """
-                        {
-                        "election":
-                            {
-                             "coverage_level_id": 137,
-                             "dependent_ids": [],
-                             "org_plan_id": 319901188
-                            },
-                        "enrollment_context_type": "initial",
-                        "include_benefits_in_response": True,
-                        "include_related_coverage_changes": True,
-                        "life_event_completed": False,
-                        "org_benefit_id":121137668
-                        }
-                        """;
-            Map<String, String> cookieDict = new HashMap<>();
-            cookieDict.put("_session_id", driverCookie.getValue().replace("_session_id=", ""));
-            Map<String, String> headers = new HashMap<>();
-            headers.put("Referer", "https://partner-dev-benefits.plansource.com/subscriber/benefit/121137668");
-            Response response = given().cookies(cookieDict).headers(headers).body(payload).contentType("application/json")
-                    .when().put(URI);
+            String jsonBody = """
+            {
+                "election": {
+                    "coverage_level_id": 137,
+                    "dependent_ids": [],
+                    "org_plan_id": 319901188
+                },
+                "enrollment_context_type": "initial",
+                "include_benefits_in_response": true,
+                "include_related_coverage_changes": true,
+                "life_event_completed": false,
+                "org_benefit_id": 121137668
+            }
+            """;
+            Response response = given()
+                    .baseUri(URI)
+                    .cookie("_session_id",driverCookie.getValue())
+                    .headers("Referer", "https://partner-dev-benefits.plansource.com/subscriber/benefit/121137668")
+                    .headers("Content-Type", "application/json")
+                    .body(jsonBody)
+                    .when().put();
             extentTestThread.get().info("Status code of API call is " + response.getStatusCode());
             //assert on status code
-            response.then().log().body().assertThat().statusCode(500);
-            extentTestThread.get().log(Status.PASS, "Status code matched as 500");
-            extentTestThread.get().info("response body: " + response.getBody());
-
+            response.then().log().body().assertThat().statusCode(200);
+            extentTestThread.get().log(Status.PASS, "Status code matched as 200");
+            var checkResponse =response.then().log().body().assertThat().body("status", equalTo("success"));
+            extentTestThread.get().info(checkResponse.toString());
+            extentTestThread.get().info("response body: " + response.getBody().asString());
             driver.navigate().refresh();
             Thread.sleep(6000);
             sa.assertEquals(driver.findElements(By.linkText("View or Change")).size(), "3");
@@ -74,6 +74,7 @@ public class DentalBenefitAddAPIandUI extends ExtentTestListener {
             Thread.sleep(6000);
             jse.executeScript("arguments[0].scrollIntoView(true)", downloadPDFButton);
             jse.executeScript("arguments[0].click()", downloadPDFButton);
+            sa.assertAll();
         } catch (Exception e) {
             logger.severe(e.toString());
             Assert.fail();
@@ -91,7 +92,7 @@ public class DentalBenefitAddAPIandUI extends ExtentTestListener {
             driver.get("chrome://downloads/");
             sa.assertEquals((String) jse.executeScript("document.querySelector('body > downloads-manager').shadowRoot.querySelector('#frb0').shadowRoot.querySelector('#file-link').textContent"), "confirmation.pdf");
             extentTestThread.get().log(Status.PASS, "Soft assertion passed: PDF found");
-
+            sa.assertAll();
         } catch (Exception e) {
             logger.severe(e.toString());
             Assert.fail();

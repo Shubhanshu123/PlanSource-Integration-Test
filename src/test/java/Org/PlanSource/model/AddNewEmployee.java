@@ -87,6 +87,7 @@ public class AddNewEmployee extends ExtentTestListener {
             driver.findElement(By.id("btn_save")).click();
             explicitWait.until(ExpectedConditions.titleIs("Employee Profile"));
             sa.assertEquals("Employee Profile", driver.getTitle());
+            sa.assertAll();
             extentTestThread.get().log(Status.PASS, "Page Title 'Employee Profile' matched");
 
         }
