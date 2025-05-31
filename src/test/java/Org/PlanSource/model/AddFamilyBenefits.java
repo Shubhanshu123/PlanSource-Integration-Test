@@ -1,10 +1,8 @@
 package Org.PlanSource.model;
 
 import Org.PlanSource.PageObject.FamilyBenefitsPage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.ElementClickInterceptedException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
@@ -81,18 +79,28 @@ public class AddFamilyBenefits {
             benefits.setRadioButton(wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[@id=\"survey_form\"]/div[2]/div/div[2]/div[1]/div/div/fieldset/div[2]/div/div/div/label[2]/span")))));
             benefits.getRadioButton().click();
             driver.findElement(By.id("next")).click();
-
             benefits.setSaveButton(wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("submit_form")))));
             benefits.getSaveButton().click();
             Thread.sleep(6000);
-            wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//* [contains(., 'To') and contains(., 'Benefits')]")))).click();
+            JavascriptExecutor jse= (JavascriptExecutor) driver;
+            jse.executeScript("document.querySelector('#app > section > section > div > div > main > div:nth-child(3) > div > div > div._3fMN2gLIuf3kBXgZYnYIIC.container-fluid.m-b-md.undefined > a').click()");
+            Thread.sleep(3000);
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Shop Plans")));
+            Actions action = new Actions(driver);
             shopPlansButtons= driver.findElements(By.linkText("Shop Plans"));
             benefits.setUpdatecartButton(shopPlansButtons.get(5));
+            action.scrollToElement(shopPlansButtons.get(6)).perform();
             benefits.getUpdatecartButton().click();
-
-
-
+            Thread.sleep(3000);
+            Select dropdown = new Select(driver.findElement(By.id("volumeSelect")));
+            dropdown.selectByIndex(1);
+            benefits.setUpdatecartButton(driver.findElement(By.id("updateCartBtn")));
+            benefits.getUpdatecartButton().click();
+            Thread.sleep(3000);
+            jse.executeScript("document.querySelector('#plan_popup > div > div > div.modal-footer.text-left > button').click()");
+            Thread.sleep(6000);
+            jse.executeScript("document.querySelector('#app > section > section > div > div > main > div:nth-child(3) > div > div > div._3fMN2gLIuf3kBXgZYnYIIC.container-fluid.m-b-md.undefined > a').click()");
+            Thread.sleep(3000);
         }
         catch (Exception e){
             logger.severe(e.toString());

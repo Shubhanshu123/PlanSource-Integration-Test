@@ -28,7 +28,7 @@ public class PlanSourceUITests extends BaseClass {
             .ignoring(NoSuchElementException.class);
     //private final WebDriverWait wait= new WebDriverWait(driver, Duration.ofSeconds(10));
     //login page test
-    @Test
+    @Test(priority = 1)
     public void loginToPlanSource() throws IOException {
         extentTest =extentReports.createTest(new Exception().getStackTrace()[0].getMethodName(),"Login to PlanSource");
         extentTestThread.set(extentTest);
@@ -36,7 +36,7 @@ public class PlanSourceUITests extends BaseClass {
         sa.assertEquals("Dashboard",driver.getTitle());
 
     }
-    @Test
+    @Test(priority = 2)
     public void createNewEmployeeProfile() throws IOException {
         extentTest =extentReports.createTest(new Exception().getStackTrace()[0].getMethodName(),"Add New Employee Details");
         extentTestThread.set(extentTest);
@@ -55,7 +55,7 @@ public class PlanSourceUITests extends BaseClass {
         sa.assertEquals("Employee Profile", driver.getTitle());
 
     }
-    @Test
+    @Test(priority = 3)
     public void AddMedical_and_VoluntaryBenefits() throws IOException {
         extentTest =extentReports.createTest(new Exception().getStackTrace()[0].getMethodName(),"Add Medical and Voluntary Benefits to employee profile");
         extentTestThread.set(extentTest);
@@ -75,5 +75,6 @@ public class PlanSourceUITests extends BaseClass {
         driver=AddFamilyBenefits.addFamilyDetails(driver);
         driver=AddFamilyBenefits.addBenefits(driver);
     }
+
 
 }
