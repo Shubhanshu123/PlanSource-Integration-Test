@@ -27,7 +27,7 @@ public class Login extends ExtentTestListener {
         FileInputStream fis=null;
         try {
             prop = new Properties();
-            fis = new FileInputStream("src/test/resources/cred.properties");
+            fis = new FileInputStream("src/test/resources/config.properties");
             PlanSourceLoginPage login = new PlanSourceLoginPage();
             prop.load(fis);
             driver.get("https://partner-dev-benefits.plansource.com/");

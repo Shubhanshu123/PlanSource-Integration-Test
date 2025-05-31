@@ -35,7 +35,7 @@ public class PlanSourceUITests extends BaseClass {
     @Test(priority = 2)
     public void createNewEmployeeProfile() throws IOException {
         Properties prop = new Properties();
-        FileInputStream fis = new FileInputStream("src/test/resources/cred.properties");
+        FileInputStream fis = new FileInputStream("src/test/resources/config.properties");
         prop.load(fis);
         driver= Login.login(driver);
         if(!driver.findElements(By.linkText(prop.getProperty("firstname") + " " + prop.getProperty("lastname"))).isEmpty()){
@@ -52,7 +52,7 @@ public class PlanSourceUITests extends BaseClass {
     @Test(priority = 3)
     public void AddMedical_and_VoluntaryBenefits() throws IOException {
         Properties prop = new Properties();
-        FileInputStream fis = new FileInputStream("src/test/resources/cred.properties");
+        FileInputStream fis = new FileInputStream("src/test/resources/config.properties");
         prop.load(fis);
         driver= Login.login(driver);
         wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath("//div[@class='loadingoverlay']"))));

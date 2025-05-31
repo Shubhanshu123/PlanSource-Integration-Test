@@ -31,7 +31,7 @@ public class AddNewEmployee extends ExtentTestListener {
         FileInputStream fis=null;
         try{
             prop = new Properties();
-            fis = new FileInputStream("src/test/resources/cred.properties");
+            fis = new FileInputStream("src/test/resources/config.properties");
             prop.load(fis); // loading properties file
             employee.setAdd_employee_link(driver.findElement(By.linkText("Add a New Employee")));
             employee.getAdd_employee_link().click();
