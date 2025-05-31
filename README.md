@@ -13,11 +13,13 @@ This is a test repo for the Plansource interview skill demo.
 ## Test Cases:
 
 - [X] Create an Employee using UI Automation
-- [ ] Add a Dependent for the created Employee in the Enrollment window.
-- [ ] Enroll the Employee into two Benefits
-- [ ] Enroll in Dental Benefits using API.
+- [X] Add a Dependent for the created Employee in the Enrollment window.
+- [X] Enroll the Employee into two Benefits
+- [ ] Enroll in Dental Benefits using API. [bug] Waiting for this stupid bug to get fixed ([#1])
 - [ ] Validate if Enrolled Benefits are visible in UI with API
-- [ ] Validate the Confirmation PDF after enrollment.
+- [X] Validate the Confirmation PDF after enrollment.
+
+[#1]: https://github.com/Shubhanshu123/PlanSource-Integration-Test/issues/6
 
 ## What is not implemented
 1. Capturing a screenshot on error. Since I am focusing on implementation and reporting. So, I am not implementing the screenshot feature.
