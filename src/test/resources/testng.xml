@@ -2,6 +2,7 @@
     <test name="UITests">
         <classes>
             <class name="Org.PlanSource.tests.PlanSourceUITests"/>
+            <class name="Org.PlanSource.tests.PlanSourceAPITests"/>
         </classes>
     </test>
 </suite>

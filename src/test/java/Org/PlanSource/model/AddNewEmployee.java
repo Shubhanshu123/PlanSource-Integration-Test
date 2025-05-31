@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -19,11 +20,11 @@ import java.util.logging.Logger;
 public class AddNewEmployee {
     private static final Logger logger = Logger.getLogger(AddNewEmployee.class.getName());
 
-    public static WebDriver addDetails(WebDriver driver){
+    public static WebDriver addDetails(WebDriver driver) throws IOException {
         WebDriverWait explicitWait =new WebDriverWait(driver, Duration.ofSeconds(5));
         AddEmployeePage employee =new AddEmployeePage();
         Properties prop;
-        FileInputStream fis;
+        FileInputStream fis=null;
         try{
             prop = new Properties();
             fis = new FileInputStream("src/test/resources/cred.properties");
@@ -32,7 +33,7 @@ public class AddNewEmployee {
             employee.getAdd_employee_link().click();
             employee.setPassword(driver.findElement(By.id("password")));
             explicitWait.until(ExpectedConditions.visibilityOf(employee.getPassword()));
-            employee.getPassword().sendKeys("12345678");
+            employee.getPassword().sendKeys("12345678qqewerrtrtt");
             employee.setFirstName(driver.findElement(By.id("first_name")));
             employee.getFirstName().sendKeys(prop.getProperty("firstname"));
             employee.setLastName(driver.findElement(By.id("last_name")));
@@ -88,6 +89,11 @@ public class AddNewEmployee {
         catch (Exception e){
             logger.severe(e.toString());
             Assert.fail();
+        }
+        finally {
+            Assert.assertNotNull(fis);
+            fis.close();
+
         }
         return driver;
     }
