@@ -34,8 +34,7 @@ jobs:
     - name: Install Google Chrome 
 
       run: |
-          choco install googlechrome -y
-
+          choco install googlechrome --ignore-checksums --confirm
 
     - name: Install Dependencies
       run: mvn clean install
