@@ -6,7 +6,7 @@ This is a test repo for the Plansource interview skill demo.
 2. Create your branch using git checkout
 3. Edit the config.properties file with your desired firstname and lastname property value.
        <code>located here: src/test/resources/config.properties </code>
-4. Select the test you want to run.
+4. Select the test you want to run. <code> Test are located here: src/test/java/Org/PlanSource/tests</code>
 5. Run with testNG.
 6. Extent report is under test-report directory.
 * If you face any issue, just do a Maven clean install.
