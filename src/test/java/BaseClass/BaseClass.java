@@ -23,6 +23,7 @@ public class BaseClass {
         options.setExperimentalOption("prefs", prefs);
         options.addArguments("--no-sandbox");
         options.addArguments("--deny-permission-prompts");
+        options.addArguments("start-maximized");
         options.enableBiDi();
         driver= new ChromeDriver(options);
     }
