@@ -80,6 +80,7 @@ public class AddFamilyBenefits extends ExtentTestListener {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Shop Plans")));
             List<WebElement> shopPlansButtons= driver.findElements(By.linkText("Shop Plans"));
             benefits.setUpdatecartButton(shopPlansButtons.getFirst());
+            wait.until(ExpectedConditions.elementToBeClickable(benefits.getUpdatecartButton()));
             benefits.getUpdatecartButton().click();
             Thread.sleep(3000);
             extentTestThread.get().log(Status.PASS, "Health benefit added");
