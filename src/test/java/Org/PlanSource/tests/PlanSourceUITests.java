@@ -55,7 +55,9 @@ public class PlanSourceUITests extends BaseClass {
         FileInputStream fis = new FileInputStream("src/test/resources/config.properties");
         prop.load(fis);
         driver= Login.login(driver);
-        wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath("//div[@class='loadingoverlay']"))));
+        if(!driver.findElements(By.xpath("//div[@class='loadingoverlay']")).isEmpty()) {
+            wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath("//div[@class='loadingoverlay']"))));
+        }
         if(!driver.findElements(By.linkText(prop.getProperty("firstname") + " " + prop.getProperty("lastname"))).isEmpty()){
             WebElement linktext= driver.findElement(By.linkText(prop.getProperty("firstname")+" "+prop.getProperty("lastname")));
             wait.until(ExpectedConditions.elementToBeClickable(linktext));
