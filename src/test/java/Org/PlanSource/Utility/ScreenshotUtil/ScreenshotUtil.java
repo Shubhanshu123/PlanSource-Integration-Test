@@ -1,4 +1,4 @@
-package Org.PlanSource.ScreenshotUtil;
+package Org.PlanSource.Utility.ScreenshotUtil;
 
 import BaseClass.BaseClass;
 import org.openqa.selenium.OutputType;

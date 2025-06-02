@@ -1,6 +1,6 @@
 package Org.PlanSource.Listeners;
 
-import Org.PlanSource.ScreenshotUtil.ScreenshotUtil;
+import Org.PlanSource.Utility.ScreenshotUtil.ScreenshotUtil;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 import org.testng.ITestContext;

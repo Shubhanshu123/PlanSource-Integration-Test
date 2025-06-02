@@ -9,10 +9,16 @@
 name: PlanSource Integration Tests
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_dispatch:
+    inputs:
+      firstname:
+        description: "Enter First Name"
+        required: true
+        type: string
+  #push:
+  #  branches: [ "main" ]
+  #pull_request:
+  #  branches: [ "main" ]
 
 jobs:
   build:
@@ -35,7 +41,13 @@ jobs:
 
       run: |
           choco install googlechrome --ignore-checksums --confirm
-          
+
+    - name: Modify Config File
+
+      run: |
+        (Get-Content src/test/resources/config.properties) -replace '^firstname=.*', 'firstname=${{ github.event.inputs.firstname }}' | Set-Content src/test/resources/config.properties
+      shell: pwsh
+
     - name: Run Integration Tests
       run: mvn test
 
