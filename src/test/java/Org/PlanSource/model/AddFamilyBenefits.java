@@ -83,11 +83,12 @@ public class AddFamilyBenefits extends ExtentTestListener {
             wait.until(ExpectedConditions.elementToBeClickable(benefits.getUpdatecartButton()));
             Actions actions=new Actions(driver);
             actions.scrollToElement(benefits.getUpdatecartButton()).click().build().perform();
-            //benefits.getUpdatecartButton().click();
             Thread.sleep(3000);
             extentTestThread.get().log(Status.PASS, "Health benefit added");
             benefits.setUpdatecartButton(wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("updateCartBtn")))));
-            benefits.getUpdatecartButton().click();
+            wait.until(ExpectedConditions.elementToBeClickable(benefits.getUpdatecartButton()));
+            actions=new Actions(driver);
+            actions.scrollToElement(benefits.getUpdatecartButton()).click().build().perform();
             Thread.sleep(6000);
             benefits.setRadioButton(wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[@id=\"survey_form\"]/div[2]/div/div[2]/div[1]/div/div/fieldset/div[2]/div/div/div/label[2]/span")))));
             benefits.getRadioButton().click();
