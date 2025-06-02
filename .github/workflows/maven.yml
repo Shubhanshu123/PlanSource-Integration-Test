@@ -55,6 +55,7 @@ jobs:
           exit 1
         }
       shell: pwsh
+      if: always()
     - name: Upload Selenium screenshots as artifact
       uses: actions/upload-artifact@v4
       with:
