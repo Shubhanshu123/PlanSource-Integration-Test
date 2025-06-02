@@ -35,10 +35,7 @@ jobs:
 
       run: |
           choco install googlechrome --ignore-checksums --confirm
-
-    - name: Install Dependencies
-      run: mvn clean install
-
+          
     - name: Run Integration Tests
       run: mvn test
 
