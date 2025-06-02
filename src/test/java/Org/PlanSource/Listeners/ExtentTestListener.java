@@ -48,6 +48,7 @@ public class ExtentTestListener implements ITestListener {
         String screenshotPath;
         try {
             screenshotPath = ScreenshotUtil.captureScreenshot( result.getName());
+            System.out.println("Screenshot Path: " + screenshotPath);
             extentTestThread.get().fail("Test Failed", MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
 
         } catch (IOException e) {

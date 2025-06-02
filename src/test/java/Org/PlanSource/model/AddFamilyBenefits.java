@@ -31,14 +31,15 @@ public class AddFamilyBenefits extends ExtentTestListener {
             benefits.setEnrollmentLink(driver.findElement(By.linkText("New Hire Enrollment")));
             benefits.getEnrollmentLink().click();
             Thread.sleep(3000);
+            extentTestThread.get().log(Status.PASS, "New hire enrollment clicked");
             benefits.setGetStartedButton(driver.findElement(By.id("enrollmentStepOne")));
             wait.until(ExpectedConditions.elementToBeClickable(benefits.getGetStartedButton())).click();
-
+            extentTestThread.get().log(Status.PASS, "get started button click successful");
             benefits.setNextButton(driver.findElement(By.id("submit_form")));
             wait.until(ExpectedConditions.elementToBeClickable(benefits.getNextButton())).click();
             wait.until(ExpectedConditions.titleIs("Dependents - Testing Plansource Client Benefits"));
             Assert.assertEquals(driver.getTitle(),"Dependents - Testing Plansource Client Benefits");
-            extentTestThread.get().log(Status.PASS, "Page Title 'Employee Profile' matched");
+            extentTestThread.get().log(Status.PASS, "Page Title "+ driver.getTitle() +" matched");
             benefits.setAddFamilyMember(driver.findElement(By.id("AddDependentDiv")));
             benefits.getAddFamilyMember().click();
             benefits.setFirstname(driver.findElement(By.id("first_name")));
@@ -53,8 +54,10 @@ public class AddFamilyBenefits extends ExtentTestListener {
             benefits.setRelationship(driver.findElement(By.id("relationship")));
             dropdown=new Select(benefits.getRelationship());
             dropdown.selectByValue("spouse");
+            extentTestThread.get().log(Status.PASS, "dependent details were added");
             benefits.setSaveButton(driver.findElement(By.id("submit_form")));
             benefits.getSaveButton().click();
+            extentTestThread.get().log(Status.PASS, "form submitted");
         }
         catch (Exception e){
             logger.severe(e.toString());
@@ -78,6 +81,7 @@ public class AddFamilyBenefits extends ExtentTestListener {
             benefits.setUpdatecartButton(shopPlansButtons.getFirst());
             benefits.getUpdatecartButton().click();
             Thread.sleep(3000);
+            extentTestThread.get().log(Status.PASS, "Health benefit added");
             benefits.setUpdatecartButton(wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("updateCartBtn")))));
             benefits.getUpdatecartButton().click();
             Thread.sleep(6000);
@@ -86,6 +90,7 @@ public class AddFamilyBenefits extends ExtentTestListener {
             driver.findElement(By.id("next")).click();
             benefits.setSaveButton(wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("submit_form")))));
             benefits.getSaveButton().click();
+            extentTestThread.get().log(Status.PASS, "Survey filled successfully");
             Thread.sleep(6000);
             JavascriptExecutor jse= (JavascriptExecutor) driver;
             jse.executeScript("document.querySelector('#app > section > section > div > div > main > div:nth-child(3) > div > div > div._3fMN2gLIuf3kBXgZYnYIIC.container-fluid.m-b-md.undefined > a').click()");
@@ -101,11 +106,13 @@ public class AddFamilyBenefits extends ExtentTestListener {
             dropdown.selectByIndex(1);
             benefits.setUpdatecartButton(driver.findElement(By.id("updateCartBtn")));
             benefits.getUpdatecartButton().click();
+            extentTestThread.get().log(Status.PASS, "Voulantary benefits added to cart");
             Thread.sleep(3000);
             jse.executeScript("document.querySelector('#plan_popup > div > div > div.modal-footer.text-left > button').click()");
             Thread.sleep(6000);
             jse.executeScript("document.querySelector('#app > section > section > div > div > main > div:nth-child(3) > div > div > div._3fMN2gLIuf3kBXgZYnYIIC.container-fluid.m-b-md.undefined > a').click()");
             Thread.sleep(3000);
+            extentTestThread.get().log(Status.PASS, "waiting to trigger API call for dental benefits");
         }
         catch (Exception e){
             logger.severe(e.toString());

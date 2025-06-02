@@ -64,6 +64,7 @@ public class DentalBenefitAddAPIandUI extends ExtentTestListener {
             wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//span[text()='Admin']")))).click();
             driver.findElement(By.xpath("//span[text()='Proceed to Checkout']")).click();
             Thread.sleep(6000);
+            extentTestThread.get().log(Status.PASS, "checkout successful");
             wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//button[span[text()='Checkout']]")))).click();
             Thread.sleep(10000);
             JavascriptExecutor jse = (JavascriptExecutor) driver;
@@ -72,6 +73,7 @@ public class DentalBenefitAddAPIandUI extends ExtentTestListener {
             Thread.sleep(6000);
             jse.executeScript("arguments[0].scrollIntoView(true)", downloadPDFButton);
             jse.executeScript("arguments[0].click()", downloadPDFButton);
+            extentTestThread.get().log(Status.PASS, "Download pdf button clicked");
             sa.assertAll();
         } catch (Exception e) {
             logger.severe(e.toString());
