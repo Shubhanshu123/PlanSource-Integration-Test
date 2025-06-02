@@ -45,6 +45,22 @@ jobs:
 
     - name: Run Integration Tests
       run: mvn test
+      
+    - name: Check if screenshots folder exists (Windows)
+      run: |
+        if (Test-Path "screenshots") {
+          Write-Output "Screenshots folder exists."
+        } else {
+          Write-Output "Screenshots folder does not exist."
+          exit 1
+        }
+      shell: pwsh
+    - name: Upload Selenium screenshots as artifact
+      uses: actions/upload-artifact@v3
+      with:
+          name: selenium-screenshots
+          path: screenshots/
+      if: always()
 
     - name: Verify Extent Report Exists
       run: |
