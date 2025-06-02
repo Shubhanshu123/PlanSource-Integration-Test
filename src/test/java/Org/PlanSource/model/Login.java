@@ -32,7 +32,7 @@ public class Login extends ExtentTestListener {
             driver.get("https://partner-dev-benefits.plansource.com/");
             driver.manage().window().maximize();
             extentTestThread.get().log(Status.PASS, "login page opened successfully");
-            WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(20));
             login.setUsername(driver.findElement(By.id("user_name")));
             explicitWait.until(ExpectedConditions.visibilityOf(login.getUsername()));
             login.getUsername().sendKeys(prop.getProperty("username"));
