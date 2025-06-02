@@ -39,15 +39,16 @@ public class Login extends ExtentTestListener {
             extentTestThread.get().log(Status.PASS, "username entered successfully");
             login.setPassword(driver.findElement(By.id("password")));
             login.getPassword().sendKeys(prop.getProperty("password"));
-            login.setSubmit(driver.findElement(By.id("logon_submit")));
             extentTestThread.get().log(Status.PASS, "password entered successfully");
+            login.setSubmit(driver.findElement(By.id("logon_submit")));
             login.getSubmit().click();
-
+            extentTestThread.get().log(Status.PASS, "login details submitted successfully");
+            Thread.sleep(3000);
             explicitWait.until(ExpectedConditions.titleIs("Dashboard"));
             sa.assertEquals("Dashboard",driver.getTitle());
             extentTestThread.get().log(Status.PASS, "Page Title 'Dashboard' matched");
 
-        } catch (IOException | ElementNotInteractableException e) {
+        } catch (IOException | ElementNotInteractableException | InterruptedException e) {
             logger.severe(e.toString());
         }
         finally {

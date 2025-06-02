@@ -76,6 +76,7 @@ public class AddFamilyBenefits extends ExtentTestListener {
             Thread.sleep(3000);
             benefits.setNextButton(driver.findElement(By.id("submit_form")));
             wait.until(ExpectedConditions.elementToBeClickable(benefits.getNextButton())).click();
+            extentTestThread.get().log(Status.PASS, "reached benefits page");
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Shop Plans")));
             List<WebElement> shopPlansButtons= driver.findElements(By.linkText("Shop Plans"));
             benefits.setUpdatecartButton(shopPlansButtons.getFirst());
@@ -114,9 +115,9 @@ public class AddFamilyBenefits extends ExtentTestListener {
             Thread.sleep(3000);
             extentTestThread.get().log(Status.PASS, "waiting to trigger API call for dental benefits");
         }
-        catch (Exception e){
+        catch (Exception | AssertionError e){
             logger.severe(e.toString());
-            Assert.fail();
+            Assert.fail(e.toString());
         }
         return driver;
     }
