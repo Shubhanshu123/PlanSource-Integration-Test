@@ -31,18 +31,21 @@ public class Login extends ExtentTestListener {
             prop.load(fis);
             driver.get("https://partner-dev-benefits.plansource.com/");
             driver.manage().window().maximize();
+            extentTestThread.get().log(Status.PASS, "login page opened successfully");
             WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(5));
             login.setUsername(driver.findElement(By.id("user_name")));
             explicitWait.until(ExpectedConditions.visibilityOf(login.getUsername()));
             login.getUsername().sendKeys(prop.getProperty("username"));
+            extentTestThread.get().log(Status.PASS, "username entered successfully");
             login.setPassword(driver.findElement(By.id("password")));
             login.getPassword().sendKeys(prop.getProperty("password"));
             login.setSubmit(driver.findElement(By.id("logon_submit")));
+            extentTestThread.get().log(Status.PASS, "password entered successfully");
             login.getSubmit().click();
 
             explicitWait.until(ExpectedConditions.titleIs("Dashboard"));
             sa.assertEquals("Dashboard",driver.getTitle());
-            extentTestThread.get().log(Status.PASS, "Page Title 'Employee Profile' matched");
+            extentTestThread.get().log(Status.PASS, "Page Title 'Dashboard' matched");
 
         } catch (IOException | ElementNotInteractableException e) {
             logger.severe(e.toString());

@@ -35,6 +35,7 @@ public class AddNewEmployee extends ExtentTestListener {
             prop.load(fis); // loading properties file
             employee.setAdd_employee_link(driver.findElement(By.linkText("Add a New Employee")));
             employee.getAdd_employee_link().click();
+            extentTestThread.get().log(Status.PASS, "Add employee page was accessed");
             employee.setPassword(driver.findElement(By.id("password")));
             explicitWait.until(ExpectedConditions.visibilityOf(employee.getPassword()));
             employee.getPassword().sendKeys("12345678qqewerrtrtt");
@@ -82,6 +83,7 @@ public class AddNewEmployee extends ExtentTestListener {
             employee.getCurrent_salary().sendKeys("1200");
             employee.setBenefit_salary(driver.findElement(By.id("benefit_salary")));
             employee.getBenefit_salary().sendKeys("1000");
+            extentTestThread.get().log(Status.PASS, "Details were entered successfully");
             driver.findElement(By.id("btn_save")).click();
             explicitWait.until(ExpectedConditions.titleIs("Employee Profile"));
             sa.assertEquals("Employee Profile", driver.getTitle());

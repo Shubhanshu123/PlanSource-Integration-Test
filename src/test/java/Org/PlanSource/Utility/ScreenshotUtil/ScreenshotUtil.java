@@ -12,7 +12,7 @@ public class ScreenshotUtil extends BaseClass {
 
     public static String captureScreenshot(String screenshotName) throws IOException {
         File source = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        String destination = System.getProperty("user.dir") + "/screenshots/" + screenshotName + ".png";
+        String destination = System.getProperty("user.dir") + File.separator +"screenshots" + File.separator + screenshotName + ".png";
         FileUtils.copyFile(source, new File(destination));
         return destination;
     }
