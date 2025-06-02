@@ -46,11 +46,24 @@ jobs:
     - name: Run Integration Tests
       run: mvn test
 
+    - name: Verify Extent Report Exists
+      run: |
+          if (Test-Path test-report/extentReport.html) { 
+              echo "Extent Report found!"
+          } else { 
+              echo "Extent Report missing! Creating dummy file..."
+              echo "<html><body><h1>No Report Found</h1></body></html>" > test-report/extentReport.html
+          }
+      shell: pwsh
+      if: always()
+
+
     - name: Upload Extent Report
       uses: actions/upload-artifact@v4
       with:
           name: extent-report
           path: test-report/extentReport.html
+      if: always()
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
