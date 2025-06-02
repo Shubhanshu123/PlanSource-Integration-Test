@@ -15,11 +15,6 @@ on:
         description: "Enter First Name"
         required: true
         type: string
-  #push:
-  #  branches: [ "main" ]
-  #pull_request:
-  #  branches: [ "main" ]
-
 jobs:
   build:
 
@@ -50,6 +45,12 @@ jobs:
 
     - name: Run Integration Tests
       run: mvn test
+
+    - name: Upload Extent Report
+      uses: actions/upload-artifact@v4
+      with:
+          name: extent-report
+          path: test-report/extentReport.html
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
